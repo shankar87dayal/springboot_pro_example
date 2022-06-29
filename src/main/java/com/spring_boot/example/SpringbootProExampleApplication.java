@@ -11,3 +11,4 @@ public class SpringbootProExampleApplication {
 	}
 
 }
+//localhost:8081/product/list-products
