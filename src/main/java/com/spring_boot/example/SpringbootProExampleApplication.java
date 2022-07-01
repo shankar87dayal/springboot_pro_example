@@ -12,3 +12,4 @@ public class SpringbootProExampleApplication {
 
 }
 //localhost:8081/product/list-products
+//http://localhost:8081/category/create
