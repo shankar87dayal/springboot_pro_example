@@ -16,7 +16,7 @@ import com.spring_boot.example.entities.User;
 import com.spring_boot.example.serviceimpl.UserServiceImpl;
 
 @RestController
-@RequestMapping("user_api")
+@RequestMapping("/users")
 public class UserController {
 	
 	@Autowired
@@ -33,7 +33,7 @@ public User createUser( @RequestBody  User user) {
 }
 
 //get All user
-	@GetMapping("/list")
+	@GetMapping("/")
 	public List<User> getAllUser(){
 		List<User> lists = userServiceImpl.getAllUser();
 		return lists;
@@ -41,7 +41,7 @@ public User createUser( @RequestBody  User user) {
 	
 	//get single user
 	
-	@GetMapping("/get-user/{userId}")
+	@GetMapping("/{userId}")
 	public User getUser(@PathVariable  int userId) {
 		
 		User user = userServiceImpl.getUser(userId);
@@ -50,7 +50,7 @@ public User createUser( @RequestBody  User user) {
 	
 	//update user
 	
-	@PutMapping("/update/{userId}")
+	@PutMapping("/{userId}")
 	public User updateUser(@PathVariable int userId, @RequestBody User newUser) {
 		User updatedUser = userServiceImpl.updateUser(userId, newUser);
 		return updatedUser;
@@ -58,7 +58,7 @@ public User createUser( @RequestBody  User user) {
 	
 	//delete user
 	
-	@DeleteMapping("/delete/{userId}")
+	@DeleteMapping("/{userId}")
 	public String deleteUser(@PathVariable int userId) {
 		userServiceImpl.deleteUser(userId);
 		return "user is delete successfully !!!";
