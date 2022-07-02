@@ -17,7 +17,7 @@ import com.spring_boot.example.entities.Product;
 import com.spring_boot.example.service.ProductService;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class ProductController {
 	//create product 
 	
 	
-	@PostMapping( "/create-product")
+	@PostMapping( "/")
 	public Product createProduct(@RequestBody Product product) {
 		Product createdProduct = productService.createProduct(product);
 		System.out.println("product created");
@@ -50,7 +50,7 @@ public class ProductController {
 	//get ALl Prroduct
 	
 	
-	@GetMapping("/list-products")
+	@GetMapping("/")
 	public List<Product> listAllProducts() {
 		List<Product> allProducts = productService.getAllProducts();
 		return allProducts;
@@ -59,7 +59,7 @@ public class ProductController {
 	//get single product
 	
 	
-	@GetMapping("/get-product/{productId}")
+	@GetMapping("/{productId}")
 	public Product getProduct(@PathVariable  int productId) {
 		Product product = productService.getProduct(productId);
 		return product;
@@ -69,7 +69,7 @@ public class ProductController {
 	//pudate Product
 	
 	
-	@PutMapping("/update-product/{productId}")
+	@PutMapping("/{productId}")
 	public Product UpdateProduct(@RequestBody Product newProduct, @PathVariable int productId) {
 		Product updatedProduct = productService.updateProduct(newProduct, productId);
 		return updatedProduct;
@@ -79,7 +79,7 @@ public class ProductController {
 	//delete product
 	
 	
-	@DeleteMapping("/delete-product/{productId}")
+	@DeleteMapping("/{productId}")
 	public String  deleteProduct(@PathVariable  int productId) {
 		productService.deleteProduct(productId);
 		return "prosuct is successfully Deleteted !!";
