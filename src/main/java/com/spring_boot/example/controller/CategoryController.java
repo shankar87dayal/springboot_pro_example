@@ -16,14 +16,14 @@ import com.spring_boot.example.entities.Category;
 import com.spring_boot.example.serviceimpl.CategoryServiceImpl;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categorys")
 public class CategoryController {
 
 	@Autowired
 	private CategoryServiceImpl categoryServiceImpl;
 	
 	//create category
-	@PostMapping("/create")
+	@PostMapping("/")
 	public Category createCategory(@RequestBody Category category)
 	{
 		Category createCategory = categoryServiceImpl.createCategory(category);
@@ -33,7 +33,7 @@ public class CategoryController {
 	}
 	
 	//get All category
-	@GetMapping("/list-category")
+	@GetMapping("/")
 	public List<Category> getAllCategory()
 	{
 		List<Category> lists = categoryServiceImpl.getAllCategory();
@@ -41,7 +41,7 @@ public class CategoryController {
 	}
 	
 	//get single category
-	@GetMapping("get-category/{categoryId}")
+	@GetMapping("/{categoryId}")
 	public Category getcategory(@PathVariable int categoryId)
 	{
 		Category category = categoryServiceImpl.getCategory(categoryId);
@@ -49,7 +49,7 @@ public class CategoryController {
 	}
 	
 	//update category
-	@PutMapping("/update/{categoryId}")
+	@PutMapping("/{categoryId}")
 	public Category updateCategory(@PathVariable int categoryId, @RequestBody Category newCategory)
 	{
 		Category updatedCategory = categoryServiceImpl.updateCategory(categoryId, newCategory);
@@ -58,7 +58,7 @@ public class CategoryController {
 	}
 	
 	//delete category
-	@DeleteMapping("delete/{categoryId}")
+	@DeleteMapping("/{categoryId}")
 	public String deleteCategory(@PathVariable int categoryId)
 	{
 		categoryServiceImpl.deleteCategory(categoryId);
