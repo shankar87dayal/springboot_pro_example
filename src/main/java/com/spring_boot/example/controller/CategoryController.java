@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring_boot.example.entities.Category;
 import com.spring_boot.example.serviceimpl.CategoryServiceImpl;
 
+
+
 @RestController
 @RequestMapping("/categorys")
 public class CategoryController {
@@ -22,7 +24,18 @@ public class CategoryController {
 	@Autowired
 	private CategoryServiceImpl categoryServiceImpl;
 	
+	
 	//create category
+	
+	/**
+	 * <p> this method is written for creating  category </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param category
+	 * @return createCategory
+	 */
+	
 	@PostMapping("/")
 	public Category createCategory(@RequestBody Category category)
 	{
@@ -33,6 +46,16 @@ public class CategoryController {
 	}
 	
 	//get All category
+	
+	/**
+	 * <p> this method is written for featch list of category </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param Noting
+	 * @return List of Category
+	 */
+	
 	@GetMapping("/")
 	public List<Category> getAllCategory()
 	{
@@ -41,6 +64,15 @@ public class CategoryController {
 	}
 	
 	//get single category
+	/**
+	 * <p> this method is written for featch single category </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param categoryId
+	 * @return  Category
+	 */
+	
 	@GetMapping("/{categoryId}")
 	public Category getcategory(@PathVariable int categoryId)
 	{
@@ -49,6 +81,17 @@ public class CategoryController {
 	}
 	
 	//update category
+	
+	/**
+	 * <p> this method is written for update   category </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param categoryId
+	 * @param Category
+	 * @return  updatedCategory
+	 */
+	
 	@PutMapping("/{categoryId}")
 	public Category updateCategory(@PathVariable int categoryId, @RequestBody Category newCategory)
 	{
@@ -58,6 +101,17 @@ public class CategoryController {
 	}
 	
 	//delete category
+	
+	/**
+	 * <p> this method is written for delete   category </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param categoryId
+	 *
+	 * @return  mess= category deleted successfully
+	 */
+	
 	@DeleteMapping("/{categoryId}")
 	public String deleteCategory(@PathVariable int categoryId)
 	{
