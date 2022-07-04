@@ -1,76 +1,33 @@
 package com.spring_boot.example.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+/**
+ * 
+ * 
+ * This method create a new product
+ * 
+ * @since 1.0
+ * @see com.example.ProductController
+ * @see com.spring_boot.example.serviceimpl
+ * 
+ * @param product
+ * @return Product
+ */
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.spring_boot.example.entities.Product;
 
-@Component
-public class ProductService {
 
-	List<Product> list = new ArrayList<>();
+public interface ProductService {
+
+	public Product createProduct( Product product);
 	
-	// creating a product
-	public Product createProduct( Product product)
-	{
-		System.out.println(product.getProductName());
-		
-		list.add(product);
-		return product;
-	}
+	public List<Product> getAllProducts();
 	
-	//get All product
+	public Product getProduct(int productId);
 	
-	public List<Product> getAllProducts()
-	{
-		return list;
-	}
+	public Product updateProduct(Product newProduct, int productId);
 	
+	public void deleteProduct(int productId);
 	
-	//get single product
-	
-	public Product getProduct(int productId) {
-		
-		Product product = list.stream().filter(p->p.getProductId()==productId).findFirst().get();
-		System.out.println(product.getProductName());
-		return product;
-	}	
-	
-	//update product
-	public Product updateProduct(Product newProduct, int productId)
-	{
-		List<Product> updatedList = list.stream().map(p->
-		{
-			if(p.getProductId()==productId)
-			{
-				p.setProductName(newProduct.getProductName());
-				p.setProductDesc(newProduct.getProductDesc());
-				p.setProductPrice(newProduct.getProductPrice());
-				p.setStock(newProduct.isStock());
-				
-				return p;
-			}else
-			{
-				return p;
-			}
-			
-			
-		}).collect(Collectors.toList());
-		
-		list =updatedList;
-		newProduct.setProductId(productId);
-		return newProduct;
-	}
-	
-	
-	//delete product
-	public void deleteProduct(int productId)
-	{
-		List<Product> newList = list.stream().filter(p->p.getProductId()!=productId).collect(Collectors.toList());
-		list=newList;
-	}
 }

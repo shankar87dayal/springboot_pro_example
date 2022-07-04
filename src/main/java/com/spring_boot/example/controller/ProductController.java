@@ -14,74 +14,113 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring_boot.example.entities.Product;
-import com.spring_boot.example.service.ProductService;
+import com.spring_boot.example.serviceimpl.ProductServiceImpl;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 
 	@Autowired
-	private ProductService productService;
+	private ProductServiceImpl productServiceImpl;
 
-	/*
-	 * @RequestMapping(value = "/create-product") public Product createProduct() {
-	 * Product product = new Product(); product.setProductId(98);
-	 * product.setProductName("HP I7 laptop");
-	 * product.setProductDesc("this is best for programmer");
-	 * product.setProductPrice(70000.00); product.setStock(true); Product
-	 * createdProduct = productService.createProduct(product); return
-	 * createdProduct;
-	 * 
-	 * 
-	 * }
-	 */
+	
+//	  @RequestMapping(value = "/create-product")
+//	  public Product createProduct() {
+//	  Product product = new Product(); 
+//	  product.setProductId(98);
+//	  product.setProductName("HP I7 laptop");
+//	  product.setProductDesc("this is best for programmer");
+//	  product.setProductPrice(70000.00); product.setStock(true); 
+//	  Product createdProduct = productServiceImpl.createProduct(product);
+//	  return createdProduct;
+//	  
+//	  
+//	  }
+	 
 	
 	//create product 
-	
+	/**
+	 * <p> this method is written for creating  product </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param product
+	 * @return createdProduct
+	 */
 	
 	@PostMapping( "/")
 	public Product createProduct(@RequestBody Product product) {
-		Product createdProduct = productService.createProduct(product);
+		Product createdProduct = productServiceImpl.createProduct(product);
 		System.out.println("product created");
 		return createdProduct;
 
 	}
 
 	//get ALl Prroduct
-	
+	/**
+	 * <p> this method is written for featch list of category </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param Noting
+	 * @return listof product
+	 */
 	
 	@GetMapping("/")
 	public List<Product> listAllProducts() {
-		List<Product> allProducts = productService.getAllProducts();
+		List<Product> allProducts = productServiceImpl.getAllProducts();
 		return allProducts;
 	}
 	
 	//get single product
-	
+	/**
+	 * <p> this method is written for featch single product </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param productId
+	 * @return  product
+	 */
 	
 	@GetMapping("/{productId}")
 	public Product getProduct(@PathVariable  int productId) {
-		Product product = productService.getProduct(productId);
+		Product product = productServiceImpl.getProduct(productId);
 		return product;
 		
 	}
 	
 	//pudate Product
+	/**
+	 * <p> this method is written for update single product </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param productId
+	 * @param Product
+	 * @return  updatedProduct
+	 */
 	
 	
 	@PutMapping("/{productId}")
 	public Product UpdateProduct(@RequestBody Product newProduct, @PathVariable int productId) {
-		Product updatedProduct = productService.updateProduct(newProduct, productId);
+		Product updatedProduct = productServiceImpl.updateProduct(newProduct, productId);
 		return updatedProduct;
 	}
 	
 	
 	//delete product
-	
+	/**
+	 * <p> this method is written for delete single product </p>
+	 * 
+	 * @author Raushan rajnan
+	 * @since 1.0
+	 * @param productId
+	 * @return  "product is successfully Deleted !!"
+	 */
 	
 	@DeleteMapping("/{productId}")
 	public String  deleteProduct(@PathVariable  int productId) {
-		productService.deleteProduct(productId);
-		return "prosuct is successfully Deleteted !!";
+		productServiceImpl.deleteProduct(productId);
+		return "prosuct is successfully Deleted !!";
 	}
 }
