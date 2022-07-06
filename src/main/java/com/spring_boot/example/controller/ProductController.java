@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring_boot.example.entities.Product;
-import com.spring_boot.example.serviceimpl.ProductServiceImpl;
+import com.spring_boot.example.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 
 	@Autowired
-	private ProductServiceImpl productServiceImpl;
+	private ProductService productService;
 
 	
 //	  @RequestMapping(value = "/create-product")
@@ -31,7 +31,7 @@ public class ProductController {
 //	  product.setProductName("HP I7 laptop");
 //	  product.setProductDesc("this is best for programmer");
 //	  product.setProductPrice(70000.00); product.setStock(true); 
-//	  Product createdProduct = productServiceImpl.createProduct(product);
+//	  Product createdProduct = productService.createProduct(product);
 //	  return createdProduct;
 //	  
 //	  
@@ -50,7 +50,7 @@ public class ProductController {
 	
 	@PostMapping( "/")
 	public Product createProduct(@RequestBody Product product) {
-		Product createdProduct = productServiceImpl.createProduct(product);
+		Product createdProduct = productService.createProduct(product);
 		System.out.println("product created");
 		return createdProduct;
 
@@ -68,7 +68,7 @@ public class ProductController {
 	
 	@GetMapping("/")
 	public List<Product> listAllProducts() {
-		List<Product> allProducts = productServiceImpl.getAllProducts();
+		List<Product> allProducts = productService.getAllProducts();
 		return allProducts;
 	}
 	
@@ -84,7 +84,7 @@ public class ProductController {
 	
 	@GetMapping("/{productId}")
 	public Product getProduct(@PathVariable  int productId) {
-		Product product = productServiceImpl.getProduct(productId);
+		Product product = productService.getProduct(productId);
 		return product;
 		
 	}
@@ -103,7 +103,7 @@ public class ProductController {
 	
 	@PutMapping("/{productId}")
 	public Product UpdateProduct(@RequestBody Product newProduct, @PathVariable int productId) {
-		Product updatedProduct = productServiceImpl.updateProduct(newProduct, productId);
+		Product updatedProduct = productService.updateProduct(newProduct, productId);
 		return updatedProduct;
 	}
 	
@@ -120,7 +120,7 @@ public class ProductController {
 	
 	@DeleteMapping("/{productId}")
 	public String  deleteProduct(@PathVariable  int productId) {
-		productServiceImpl.deleteProduct(productId);
+		productService.deleteProduct(productId);
 		return "prosuct is successfully Deleted !!";
 	}
 }
