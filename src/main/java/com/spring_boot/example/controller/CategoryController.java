@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring_boot.example.entities.Category;
-import com.spring_boot.example.serviceimpl.CategoryServiceImpl;
+import com.spring_boot.example.service.CategoryService;
 
 
 
@@ -22,7 +22,7 @@ import com.spring_boot.example.serviceimpl.CategoryServiceImpl;
 public class CategoryController {
 
 	@Autowired
-	private CategoryServiceImpl categoryServiceImpl;
+	private CategoryService categoryService;
 	
 	
 	//create category
@@ -39,7 +39,7 @@ public class CategoryController {
 	@PostMapping("/")
 	public Category createCategory(@RequestBody Category category)
 	{
-		Category createCategory = categoryServiceImpl.createCategory(category);
+		Category createCategory = categoryService.createCategory(category);
 		System.out.println("category created");
 		
 		return createCategory;
@@ -59,7 +59,7 @@ public class CategoryController {
 	@GetMapping("/")
 	public List<Category> getAllCategory()
 	{
-		List<Category> lists = categoryServiceImpl.getAllCategory();
+		List<Category> lists = categoryService.getAllCategory();
 		return lists;
 	}
 	
@@ -76,7 +76,7 @@ public class CategoryController {
 	@GetMapping("/{categoryId}")
 	public Category getcategory(@PathVariable int categoryId)
 	{
-		Category category = categoryServiceImpl.getCategory(categoryId);
+		Category category = categoryService.getCategory(categoryId);
 		return category;
 	}
 	
@@ -95,7 +95,7 @@ public class CategoryController {
 	@PutMapping("/{categoryId}")
 	public Category updateCategory(@PathVariable int categoryId, @RequestBody Category newCategory)
 	{
-		Category updatedCategory = categoryServiceImpl.updateCategory(categoryId, newCategory);
+		Category updatedCategory = categoryService.updateCategory(categoryId, newCategory);
 		
 		return updatedCategory;
 	}
@@ -115,7 +115,7 @@ public class CategoryController {
 	@DeleteMapping("/{categoryId}")
 	public String deleteCategory(@PathVariable int categoryId)
 	{
-		categoryServiceImpl.deleteCategory(categoryId);
+		categoryService.deleteCategory(categoryId);
 		return "category deleted successfully";
 	}
 }
