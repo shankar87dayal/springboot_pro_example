@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring_boot.example.entities.User;
-import com.spring_boot.example.serviceimpl.UserServiceImpl;
+import com.spring_boot.example.service.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 	
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 
 	//creating user
 	
 @PostMapping("/")
 public User createUser( @RequestBody  User user) {
 	
-	User createdUser = userServiceImpl.createUser(user);
+	User createdUser = userService.createUser(user);
 	System.out.println("user create");
 	return createdUser;
 }
@@ -35,7 +35,7 @@ public User createUser( @RequestBody  User user) {
 //get All user
 	@GetMapping("/")
 	public List<User> getAllUser(){
-		List<User> lists = userServiceImpl.getAllUser();
+		List<User> lists = userService.getAllUser();
 		return lists;
 	}
 	
@@ -44,7 +44,7 @@ public User createUser( @RequestBody  User user) {
 	@GetMapping("/{userId}")
 	public User getUser(@PathVariable  int userId) {
 		
-		User user = userServiceImpl.getUser(userId);
+		User user = userService.getUser(userId);
 		return user;
 	}
 	
@@ -52,7 +52,7 @@ public User createUser( @RequestBody  User user) {
 	
 	@PutMapping("/{userId}")
 	public User updateUser(@PathVariable int userId, @RequestBody User newUser) {
-		User updatedUser = userServiceImpl.updateUser(userId, newUser);
+		User updatedUser = userService.updateUser(userId, newUser);
 		return updatedUser;
 	}
 	
@@ -60,7 +60,7 @@ public User createUser( @RequestBody  User user) {
 	
 	@DeleteMapping("/{userId}")
 	public String deleteUser(@PathVariable int userId) {
-		userServiceImpl.deleteUser(userId);
+		userService.deleteUser(userId);
 		return "user is delete successfully !!!";
 	}
 	
