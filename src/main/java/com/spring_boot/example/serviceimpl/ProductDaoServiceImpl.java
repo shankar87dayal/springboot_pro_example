@@ -1,4 +1,4 @@
-package com.spring_boot.example.service;
+package com.spring_boot.example.serviceimpl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring_boot.example.dao.ProductDao;
 import com.spring_boot.example.entities.Product;
+import com.spring_boot.example.service.ProductService;
 
 @Service
 @Primary
